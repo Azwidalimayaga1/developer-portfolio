@@ -184,7 +184,6 @@
   /* ---- Contact Form ---- */
   function initContactForm() {
     var form = document.getElementById('contact-form');
-    var success = document.getElementById('form-success');
     if (!form) return;
 
     form.addEventListener('submit', function(e) {
@@ -198,19 +197,16 @@
         return;
       }
 
-      var submitBtn = form.querySelector('button[type="submit"]');
-      submitBtn.disabled = true;
-      submitBtn.querySelector('span').textContent = 'Sending...';
+      var subject = 'Portfolio message from ' + name.value.trim();
+      var body = 'Name: ' + name.value.trim() + '\n'
+        + 'Email: ' + email.value.trim() + '\n\n'
+        + message.value.trim();
 
-      setTimeout(function() {
-        submitBtn.disabled = false;
-        submitBtn.querySelector('span').textContent = 'Send Message';
-        form.reset();
-        if (success) {
-          success.hidden = false;
-          setTimeout(function() { success.hidden = true; }, 4000);
-        }
-      }, 1200);
+      window.location.href = 'mailto:azwidalimanyaga244@gmail.com'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+
+      form.reset();
     });
   }
 

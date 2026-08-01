@@ -59,8 +59,8 @@ a { transition: color var(--dur-fast) var(--ease); }
 }
 
 [data-theme="light"] ::selection {
-  background: rgba(109, 40, 217, 0.2);
-  color: #1a0536;
+  background: rgba(30, 64, 175, 0.18);
+  color: #14213d;
 }
 
 /* Scrollbar */

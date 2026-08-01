@@ -94,7 +94,7 @@ PF.initTerminal = function initTerminal() {
     ]; },
 
     contact: function() { return [
-      '  Email:    azwidali@example.com',
+      '  Email:    azwidalimanyaga244@gmail.com',
       '  GitHub:   github.com/Azwidalimayaga1',
       '  LinkedIn: linkedin.com/in/azwidali',
       '',

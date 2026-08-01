@@ -149,7 +149,7 @@
   z-index: 1;
 }
 .project-card:hover::before {
-  background: linear-gradient(135deg, var(--c-violet-500), var(--c-fuchsia-500), var(--c-violet-400));
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
   opacity: 1;
 }
 
