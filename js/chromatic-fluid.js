@@ -48,7 +48,6 @@ window.PF = window.PF || {};
     var start = performance.now();
     var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function isDark() { return document.documentElement.getAttribute('data-theme') === 'dark'; }
     function resize() {
       var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       var rect = host.getBoundingClientRect();
@@ -58,20 +57,18 @@ window.PF = window.PF || {};
       gl.uniform2f(resolution, canvas.width, canvas.height);
     }
     function draw(now) {
-      if (!isDark()) { frameId = 0; return; }
       gl.uniform1f(time, (now - start) / 1000);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       if (!reduced) frameId = requestAnimationFrame(draw);
     }
     function startRender() {
-      if (!isDark() || frameId) return;
+      if (frameId) return;
       resize();
       if (reduced) draw(start); else frameId = requestAnimationFrame(draw);
     }
 
     var resizeObserver = window.ResizeObserver ? new ResizeObserver(function() { resize(); }) : null;
     if (resizeObserver) resizeObserver.observe(host); else window.addEventListener('resize', resize, { passive: true });
-    new MutationObserver(function() { if (isDark()) startRender(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     startRender();
   };
 })();
