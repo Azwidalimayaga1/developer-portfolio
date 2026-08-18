@@ -94,14 +94,14 @@
 
 /* ---- Purple pulse ---- */
 @keyframes purplePulse {
-  0%, 100% { box-shadow: var(--pulse-shadow-sm); }
-  50% { box-shadow: var(--pulse-shadow-lg); }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.92; transform: scale(1.015); }
 }
 
 /* ---- Gradient border animation ---- */
 @keyframes borderGlow {
-  0%, 100% { border-color: rgba(139, 92, 246, 0.2); }
-  50% { border-color: rgba(217, 70, 239, 0.4); }
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 /* ---- Tilt card hover (JS-enhanced) ---- */

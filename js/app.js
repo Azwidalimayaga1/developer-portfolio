@@ -295,12 +295,22 @@
     initBackToTop();
     initContactForm();
     PF.initParticles();
-    PF.initChromaticFluid();
     PF.initHero();
     PF.initTiltCards();
     PF.initMagneticButtons();
     PF.initPerformanceMonitor();
-    PF.initTerminal();
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function() {
+        PF.initChromaticFluid();
+        PF.initTerminal();
+      });
+    } else {
+      setTimeout(function() {
+        PF.initChromaticFluid();
+        PF.initTerminal();
+      }, 200);
+    }
 
     PF.appState.get().mounted = true;
 
