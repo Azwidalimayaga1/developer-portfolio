@@ -47,6 +47,7 @@ window.PF = window.PF || {};
     var frameId = 0;
     var start = performance.now();
     var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var isVisible = true;
 
     function resize() {
       var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
@@ -59,13 +60,20 @@ window.PF = window.PF || {};
     function draw(now) {
       gl.uniform1f(time, (now - start) / 1000);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      if (!reduced) frameId = requestAnimationFrame(draw);
+      if (!reduced && isVisible) frameId = requestAnimationFrame(draw);
+      else frameId = 0;
     }
     function startRender() {
       if (frameId) return;
       resize();
       if (reduced) draw(start); else frameId = requestAnimationFrame(draw);
     }
+
+    var visibilityObserver = new IntersectionObserver(function(entries) {
+      isVisible = entries[0].isIntersecting;
+      if (isVisible && !reduced) startRender();
+    }, { threshold: 0 });
+    visibilityObserver.observe(host);
 
     var resizeObserver = window.ResizeObserver ? new ResizeObserver(function() { resize(); }) : null;
     if (resizeObserver) resizeObserver.observe(host); else window.addEventListener('resize', resize, { passive: true });

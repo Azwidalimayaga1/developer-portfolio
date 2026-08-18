@@ -25,7 +25,8 @@ window.PF = window.PF || {};
     scrollY: 0,
     scrollProgress: 0,
     prefersReducedMotion: false,
-    revealed: false
+    revealed: false,
+    visible: true
   };
 
   var els = {};
@@ -143,6 +144,7 @@ window.PF = window.PF || {};
   }
 
   function tick() {
+    if (!state.visible) return;
     updateTilt();
     updateGlow();
     updateImageParallax();
@@ -185,6 +187,15 @@ window.PF = window.PF || {};
 
     setupReveal();
     onScroll();
+
+    if ('IntersectionObserver' in window) {
+      var heroObserver = new IntersectionObserver(function(entries) {
+        state.visible = entries[0].isIntersecting;
+        if (state.visible) requestAnimationFrame(tick);
+      }, { threshold: 0 });
+      heroObserver.observe(els.avatar);
+    }
+
     requestAnimationFrame(tick);
   };
 

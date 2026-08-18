@@ -186,122 +186,80 @@
     var form = document.getElementById('contact-form');
     if (!form) return;
 
+    var fields = [
+      { el: null, error: null, msg: 'Please enter your name', pattern: null },
+      { el: null, error: null, msg: 'Please enter a valid email', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
+      { el: null, error: null, msg: 'Please enter your message', pattern: null }
+    ];
+
+    function validateField(field) {
+      var val = field.el.value.trim();
+      var group = field.el.closest('.form-group');
+      if (!val || (field.pattern && !field.pattern.test(val))) {
+        group.classList.add('is-error');
+        field.error.textContent = field.msg;
+        return false;
+      }
+      group.classList.remove('is-error');
+      field.error.textContent = '';
+      return true;
+    }
+
+    fields[0].el = form.querySelector('#form-name');
+    fields[0].error = form.querySelector('#form-name-error');
+    fields[1].el = form.querySelector('#form-email');
+    fields[1].error = form.querySelector('#form-email-error');
+    fields[2].el = form.querySelector('#form-message');
+    fields[2].error = form.querySelector('#form-message-error');
+
+    fields.forEach(function(f) {
+      f.el.addEventListener('blur', function() { validateField(f); });
+      f.el.addEventListener('input', function() {
+        if (f.el.closest('.form-group').classList.contains('is-error')) validateField(f);
+      });
+    });
+
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+      var valid = true;
+      fields.forEach(function(f) { if (!validateField(f)) valid = false; });
+      if (!valid) return;
 
-      var name = form.querySelector('#form-name');
-      var email = form.querySelector('#form-email');
-      var message = form.querySelector('#form-message');
+      var name = fields[0].el.value.trim();
+      var email = fields[1].el.value.trim();
+      var message = fields[2].el.value.trim();
 
-      if (!name.value.trim() || !email.value.trim() || !message.value.trim()) {
-        return;
-      }
-
-      var subject = 'Portfolio message from ' + name.value.trim();
-      var body = 'Name: ' + name.value.trim() + '\n'
-        + 'Email: ' + email.value.trim() + '\n\n'
-        + message.value.trim();
+      var subject = 'Portfolio message from ' + name;
+      var body = 'Name: ' + name + '\n'
+        + 'Email: ' + email + '\n\n'
+        + message;
 
       window.location.href = 'mailto:azwidalimanyaga244@gmail.com'
         + '?subject=' + encodeURIComponent(subject)
         + '&body=' + encodeURIComponent(body);
 
       form.reset();
-    });
-  }
-
-  /* ---- Skill Card Stagger Reveal ---- */
-  function initSkillCardReveal() {
-    var grid = document.querySelector('.skills-categories');
-    if (!grid) return;
-
-    var cards = grid.querySelectorAll('.skill-card');
-    cards.forEach(function(card, i) {
-      card.style.animationDelay = (i * 45) + 'ms';
-    });
-
-    var observer = new IntersectionObserver(
-      function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            var cards = entry.target.querySelectorAll('.skill-card');
-            cards.forEach(function(card) { card.classList.add('is-visible'); });
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
-    );
-
-    observer.observe(grid);
-  }
-
-  /* ---- Skills category filters ---- */
-  function initSkillFilters() {
-    var filters = document.querySelectorAll('.skills-filter-btn');
-    var cards = document.querySelectorAll('.skills-categories .skill-card');
-    if (!filters.length || !cards.length) return;
-
-    filters.forEach(function(button) {
-      button.addEventListener('click', function() {
-        var filter = button.dataset.filter;
-
-        filters.forEach(function(item) {
-          var active = item === button;
-          item.classList.toggle('is-active', active);
-          item.setAttribute('aria-pressed', String(active));
-        });
-
-        cards.forEach(function(card) {
-          var category = card.closest('[data-skill-category]');
-          var isMatch = filter === 'all' || (category && category.dataset.skillCategory === filter);
-          card.hidden = !isMatch;
-        });
+      fields.forEach(function(f) {
+        f.el.closest('.form-group').classList.remove('is-error');
+        f.error.textContent = '';
       });
     });
   }
 
-  /* ---- Current Devicon brand marks with inline SVG fallback ---- */
-  function initModernSkillIcons() {
-    var iconBase = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/';
-    var icons = {
-      'HTML5': 'html5/html5-original.svg',
-      'CSS3': 'css3/css3-original.svg',
-      'JavaScript': 'javascript/javascript-original.svg',
-      'TypeScript': 'typescript/typescript-original.svg',
-      'React': 'react/react-original.svg',
-      'ASP.NET': 'dotnetcore/dotnetcore-original.svg',
-      'C#': 'csharp/csharp-original.svg',
-      'Python': 'python/python-original.svg',
-      'SQL Server': 'microsoftsqlserver/microsoftsqlserver-plain.svg',
-      'MySQL': 'mysql/mysql-original.svg',
-      'Firebase': 'firebase/firebase-plain.svg',
-      'Git': 'git/git-original.svg',
-      'GitHub': 'github/github-original.svg',
-      'VS Code': 'vscode/vscode-original.svg',
-      'Visual Studio': 'visualstudio/visualstudio-original.svg',
-      'Figma': 'figma/figma-original.svg'
-    };
-
-    document.querySelectorAll('.skill-card').forEach(function(card) {
-      var name = card.querySelector('.skill-card__name');
-      var stage = card.querySelector('.skill-card__icon');
-      var fallback = stage && stage.querySelector('svg');
-      var source = name && icons[name.textContent.trim()];
-      if (!stage || !fallback || !source) return;
-
-      var image = document.createElement('img');
-      image.className = 'skill-card__brand-icon';
-      image.alt = '';
-      image.decoding = 'async';
-      image.hidden = true;
-      image.addEventListener('load', function() {
-        fallback.remove();
-        image.hidden = false;
-      });
-      image.addEventListener('error', function() { image.remove(); });
-      stage.appendChild(image);
-      image.src = iconBase + source;
+  /* ---- Download CV ---- */
+  function initDownloadCV() {
+    var link = document.getElementById('download-cv');
+    if (!link) return;
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var url = link.href;
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'Azwidali Manyaga CV.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     });
   }
 
@@ -329,6 +287,7 @@
     initExperienceTimeline();
     initMobileMenu();
     initSmoothScroll();
+    initDownloadCV();
     PF.initScrollReveal();
     PF.initCounters();
     initNavHighlight();
@@ -340,9 +299,6 @@
     PF.initHero();
     PF.initTiltCards();
     PF.initMagneticButtons();
-    initSkillCardReveal();
-    initSkillFilters();
-    initModernSkillIcons();
     PF.initPerformanceMonitor();
     PF.initTerminal();
 

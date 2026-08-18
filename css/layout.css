@@ -3125,3 +3125,66 @@ a.contact-card__value:hover { color: var(--accent); }
   .hero__role-main { padding: 0; font-size: clamp(0.82rem, 4vw, 1rem); }
   .hero__role-note { max-width: 30ch; font-size: 0.68rem; }
 }
+
+/* Mobile pages scroll vertically only; wide hero orbits stay visually clipped. */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+}
+
+body { touch-action: pan-y; }
+
+main,
+.hero {
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+@media (max-width: 767px) {
+  .nav-wrapper {
+    left: 16px;
+    right: auto;
+    width: calc(100vw - 32px);
+    min-width: 0;
+    max-width: calc(100vw - 32px);
+    transform: none;
+  }
+
+  .nav {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding-inline: 1rem;
+  }
+
+  .nav__logo { min-width: 0; }
+  .nav__actions { flex: 0 0 auto; }
+
+  .hero__container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 100%;
+  }
+
+  .hero__content { display: contents; }
+  .hero__greeting { order: 1; }
+  .hero__name { order: 2; }
+  .hero__title-wrapper { order: 3; }
+
+  .hero__visual {
+    order: 4;
+    width: 100%;
+    max-width: 100%;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .hero__resume-links { order: 5; }
+  .hero__actions { order: 6; }
+  .hero__socials { order: 7; }
+}
