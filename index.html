@@ -49,6 +49,32 @@
   <script src="js/terminal.js" defer></script>
   <script src="js/app.js" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Azwidali Manyaga","jobTitle":"Software Developer","address":{"@type":"PostalAddress","addressCountry":"ZA"},"knowsAbout":["Web Development","Software Engineering","UI/UX Design","Information Security","System Design"]}</script>
+
+  <style id="about-editorial-styles">
+    #about { --about-accent: #91a7ff; --about-panel: #202723; --about-rule: #343b38; }
+    [data-theme="light"] #about { --about-accent: #294dd8; --about-panel: #edf0e9; --about-rule: #dce1d9; }
+    #about .about-editorial__grid { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); gap: clamp(2rem,5vw,4.5rem); align-items: center; }
+    #about .about-editorial__eyebrow { color: var(--text-muted); font: 500 .75rem/1.6 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
+    #about .about-editorial__heading { margin: 1rem 0 1.5rem; font-size: clamp(2rem,3.5vw,3.5rem); line-height: 1.12; letter-spacing: -.045em; font-weight: 650; color: var(--text); }
+    #about .about-editorial__heading span { color: var(--about-accent); }
+    #about .about-editorial__intro { max-width: 35rem; font-size: 1.0625rem; line-height: 1.8; color: var(--text-secondary); }
+    #about .about-editorial__note { margin-top: 2rem; padding-left: 1.25rem; border-left: 2px solid var(--about-accent); font-size: 1rem; line-height: 1.75; color: var(--text-secondary); }
+    #about .about-editorial__note strong { display: block; color: var(--text); margin-bottom: .25rem; }
+    #about .about-editorial__profile { background: var(--about-panel); padding: clamp(1.25rem,3vw,2rem); border-radius: .875rem; min-width: 0; }
+    #about .about-editorial__monogram { color: var(--about-accent); font-size: 3.5rem; font-weight: 750; line-height: 1.1; letter-spacing: -.08em; margin-bottom: 1.75rem; }
+    #about .about-editorial__monogram span { font-weight: 400; }
+    #about .about-editorial__profile dl { margin-top: 1.25rem; }
+    #about .about-editorial__profile dl > div { display: grid; grid-template-columns: auto minmax(0,1fr); gap: 1rem; border-top: 1px solid var(--about-rule); padding: .8rem 0; font-size: .9375rem; }
+    #about .about-editorial__profile dt { color: var(--text-secondary); }
+    #about .about-editorial__profile dd { margin: 0; text-align: right; color: var(--text); overflow-wrap: anywhere; }
+    #about .about-editorial__principles { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 2rem; border-top: 1px solid var(--about-rule); margin-top: 3rem; padding-top: 1.75rem; }
+    #about .about-editorial__principles h3 { font-size: 1.0625rem; margin: .5rem 0; color: var(--text); }
+    #about .about-editorial__principles p { font-size: 1rem; line-height: 1.7; color: var(--text-secondary); }
+    @media (max-width: 700px) {
+      #about .about-editorial__grid, #about .about-editorial__principles { grid-template-columns: minmax(0,1fr); }
+      #about .about-editorial__principles { gap: 1.5rem; margin-top: 2rem; }
+    }
+  </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -446,79 +472,31 @@
     <!-- ==================== ABOUT ==================== -->
     <section id="about" class="section" aria-labelledby="about-heading">
       <div class="container">
-        <p class="section__label reveal-up">Get To Know Me</p>
-        <h2 id="about-heading" class="section__title reveal-up">About <span class="gradient-text">Me</span></h2>
-
-        <div class="about-grid">
-          <div class="about__bio reveal-up">
-            <p>
-              I'm a final-year IT Software Development student based in South Africa, passionate about building modern, responsive, and user-focused applications. I enjoy solving real-world problems through software and have experience developing full-stack web applications, designing intuitive user interfaces, and creating system documentation.
-            </p>
-            <p>
-              I'm constantly learning new technologies while improving my skills in software development, UI/UX design, and cybersecurity. My goal is to become a software developer who builds impactful digital solutions.
-            </p>
-            <div class="about__tags">
-              <span class="about__tag">Full-Stack Development</span>
-              <span class="about__tag">UI/UX Design</span>
-              <span class="about__tag">Information Security</span>
-              <span class="about__tag">System Design</span>
-              <span class="about__tag">Problem Solving</span>
+        <div class="about-editorial__grid">
+          <div>
+            <p class="about-editorial__eyebrow">A little about me</p>
+            <h2 id="about-heading" class="about-editorial__heading">Curious by nature.<br><span>Developer by practice.</span></h2>
+            <p class="about-editorial__intro">I'm a final-year software development student in South Africa. I build web and mobile applications, with a focus on making everyday tasks simpler.</p>
+            <div class="about-editorial__note">
+              <strong>From the first sketch to the final commit.</strong>
+              <p>I enjoy connecting thoughtful interfaces with the systems that make them work.</p>
             </div>
           </div>
-
-          <div class="about__stats reveal-up">
-            <div class="stat-card glass">
-              <span class="stat-card__number" data-count="3" data-suffix="+">0</span>
-              <span class="stat-card__label">Years Learning</span>
-            </div>
-            <div class="stat-card glass">
-              <span class="stat-card__number" data-count="6" data-suffix="+">0</span>
-              <span class="stat-card__label">Projects Built</span>
-            </div>
-            <div class="stat-card glass">
-              <span class="stat-card__number" data-count="10" data-suffix="+">0</span>
-              <span class="stat-card__label">Technologies</span>
-            </div>
-            <div class="stat-card glass">
-              <span class="stat-card__number" data-count="3">0</span>
-              <span class="stat-card__label">Core Focus Areas</span>
-            </div>
-          </div>
+          <aside class="about-editorial__profile" aria-label="Developer profile">
+            <div class="about-editorial__monogram" aria-hidden="true">az<span>_</span></div>
+            <h3 class="about-editorial__eyebrow">Currently building &amp; learning</h3>
+            <dl>
+              <div><dt>Based in</dt><dd>South Africa</dd></div>
+              <div><dt>Focus</dt><dd>Web &amp; mobile</dd></div>
+              <div><dt>Exploring</dt><dd>UI/UX &amp; security</dd></div>
+              <div><dt>Next chapter</dt><dd>Software development</dd></div>
+            </dl>
+          </aside>
         </div>
-
-        <!-- Strengths -->
-        <div class="strengths reveal-up">
-          <h3 class="strengths__title">What I Bring</h3>
-          <div class="strengths__grid">
-            <div class="strength-card glass tilt-card">
-              <div class="strength-card__icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><path d="M10 21v2a2 2 0 0 0 2 2v0a2 2 0 0 0 2-2v-2"/></svg>
-              </div>
-              <h4>Problem Solving</h4>
-              <p>Breaking down complex challenges into elegant, maintainable solutions.</p>
-            </div>
-            <div class="strength-card glass tilt-card">
-              <div class="strength-card__icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 2 2 4-4"/><path d="M12 8V4H8"/><path d="M2 16h4"/><path d="m9 14-2-2-4 4"/><path d="M2 8h4"/><path d="m9 6 2-2 4 4"/></svg>
-              </div>
-              <h4>Clean Code</h4>
-              <p>Writing readable, maintainable code with consistent conventions.</p>
-            </div>
-            <div class="strength-card glass tilt-card">
-              <div class="strength-card__icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              </div>
-              <h4>Team Collaboration</h4>
-              <p>Working effectively in teams using Agile methodologies.</p>
-            </div>
-            <div class="strength-card glass tilt-card">
-              <div class="strength-card__icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h8"/></svg>
-              </div>
-              <h4>Continuous Learning</h4>
-              <p>Always exploring new technologies and best practices.</p>
-            </div>
-          </div>
+        <div class="about-editorial__principles" aria-label="How I approach development">
+          <div><span class="about-editorial__eyebrow" aria-hidden="true">01</span><h3>Make it useful.</h3><p>Start with a real problem and build around the people using it.</p></div>
+          <div><span class="about-editorial__eyebrow" aria-hidden="true">02</span><h3>Keep it clear.</h3><p>Readable code, considered interfaces, and documentation that helps.</p></div>
+          <div><span class="about-editorial__eyebrow" aria-hidden="true">03</span><h3>Keep learning.</h3><p>Build, get feedback, and use each project to improve the next.</p></div>
         </div>
       </div>
     </section>
