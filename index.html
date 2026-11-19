@@ -90,6 +90,38 @@
 @media(max-width:700px) { #projects .projects-grid { grid-template-columns:minmax(0,1fr); } }
 @media(hover:none) { #projects .project-card__overlay { opacity:1; background:var(--bg-glass); position:static; padding:.75rem; } #projects .project-card--portfolio .project-card__image { aspect-ratio:auto; } }
 </style>
+<style id="uniform-project-layout">
+#projects .projects-grid { grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:1fr; align-items:stretch; }
+#projects .project-card { grid-column:auto; min-width:0; display:flex; flex-direction:column; }
+#projects .project-card .project-card__image { aspect-ratio:16/10; flex:none; width:100%; }
+#projects .project-card__body { display:flex; flex-direction:column; flex:1; min-width:0; }
+#projects .project-card__source { margin-top:auto; padding-top:1rem; }
+#projects .project-card__tags { margin-bottom:1rem; }
+#projects .project-card__badge { align-self:flex-start; }
+#projects .project-card__overlay { position:absolute; inset:0; }
+#experience .project-archive { list-style:none; padding:0; margin:2rem 0 0; }
+#experience .project-archive li { display:flex; justify-content:space-between; align-items:center; gap:1.5rem; padding:1.5rem 0; border-top:1px solid var(--bg-glass-border); }
+#experience .project-archive h3 { font-size:1.125rem; color:var(--text); margin-bottom:.35rem; }
+#experience .project-archive p { font-size:.875rem; color:var(--text-secondary); }
+#experience .project-archive a { color:var(--accent); padding:.75rem 0; flex-shrink:0; font-size:.875rem; }
+#experience .project-archive a:hover { text-decoration:underline; }
+@media(max-width:700px) {
+#projects .container { padding-inline:1rem; }
+#projects .projects-grid { gap:.75rem; }
+#projects .project-card__body { padding:.875rem; }
+#projects .project-card__title { font-size:1rem; overflow-wrap:anywhere; line-height:1.35; }
+#projects .project-card__desc { font-size:.875rem; line-height:1.55; }
+#projects .project-card__tags { gap:.25rem; }
+#projects .project-card__tags span { font-size:.6875rem; padding:.2rem .35rem; overflow-wrap:anywhere; }
+#projects .project-card__badge { font-size:.625rem; white-space:normal; }
+#projects .project-cover-type { padding:.75rem; gap:.4rem; }
+#projects .project-cover-type strong { font-size:1.2rem; }
+#projects .project-cover-type span { font-size:.625rem; }
+#projects .project-card__source { font-size:.8125rem; }
+#projects .project-card__overlay { flex-direction:column; gap:.25rem; }
+#experience .project-archive li { gap:.75rem; }
+}
+</style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -529,12 +561,12 @@
 <h3 id="proj-pos" class="project-card__title">Wapanda POS System</h3><p class="project-card__desc">A configurable point-of-sale platform bringing sales, inventory, customers, reporting and role-based access together. Includes phone barcode scanning, store branding, and backup and recovery tools.</p>
 <div class="project-card__tags"><span>PHP</span><span>MySQL</span><span>JSON API</span></div>
 <a class="project-card__source" href="#contact">Request a walkthrough <span>(private repository)</span></a></div></article>
-<article class="project-card glass reveal-up" aria-labelledby="proj-daylight">
-<div class="project-card__image"><div class="project-cover-type" aria-hidden="true"><span>Habits / Accounts / Progress</span><strong>daylight.</strong><span>Kotlin / Android / SQLite / REST API</span></div></div>
-<div class="project-card__body"><span class="project-card__badge project-card__badge--complete">Android + API prototype</span>
-<h3 id="proj-daylight" class="project-card__title">Daylight Habit Tracker</h3><p class="project-card__desc">A Kotlin Android app and SQLite-backed REST API with account registration, persistent habits, editable settings, encrypted session storage, and backend and Android tests.</p>
-<div class="project-card__tags"><span>Kotlin</span><span>Android</span><span>SQLite</span><span>REST API</span></div>
-<a class="project-card__source" href="https://github.com/Azwidalimayaga1/daylight-kotlin-prototype" target="_blank" rel="noopener noreferrer">View source on GitHub</a></div></article>
+<article class="project-card glass reveal-up" aria-labelledby="proj-reminder">
+<div class="project-card__image"><div class="project-cover-type" aria-hidden="true"><span>Subjects / Tasks / Reminders</span><strong>Smart Reminder</strong><span>PHP / MariaDB / Kotlin</span></div></div>
+<div class="project-card__body"><span class="project-card__badge project-card__badge--complete">Academic management</span>
+<h3 id="proj-reminder" class="project-card__title">Smart Reminder System</h3><p class="project-card__desc">An academic workspace for Intuthuko College with subjects, tasks, calendar events, reminders and administration tools, alongside a Kotlin Android application.</p>
+<div class="project-card__tags"><span>PHP</span><span>MariaDB</span><span>Kotlin</span></div>
+<a class="project-card__source" href="https://github.com/Azwidalimayaga1/Smart_Reminder_System-Intuthuko" target="_blank" rel="noopener noreferrer">View source on GitHub</a></div></article>
 <article class="project-card glass reveal-up" aria-labelledby="proj-cash">
 <div class="project-card__image"><div class="project-cover-type" aria-hidden="true"><span>Budget / Track / Understand</span><strong>Cash Control</strong><span>Kotlin / Room / SQLite</span></div></div>
 <div class="project-card__body"><span class="project-card__badge project-card__badge--complete">Offline Android app</span>
@@ -579,100 +611,10 @@
 </section>
 
     <!-- ==================== EXPERIENCE TIMELINE ==================== -->
-    <section id="experience" class="section section--alt" aria-labelledby="experience-heading" style="content-visibility:auto;contain-intrinsic-size:0 800px">
-      <div class="container">
-        <p class="section__label reveal-up">Development Portfolio</p>
-        <h2 id="experience-heading" class="section__title reveal-up">Software Projects &amp; <span class="gradient-text">Digital Solutions</span></h2>
-
-        <ol class="timeline engineering-timeline" aria-label="Software projects and digital solutions timeline">
-
-          <li class="timeline__item reveal-up">
-            <div class="timeline__marker" aria-hidden="true"><span class="timeline__year">2026</span><span class="timeline__node"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span></div>
-            <article class="timeline__card">
-              <header class="timeline__card-header"><span class="timeline__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><div><p class="timeline__meta"><span class="timeline__status">Mobile Application</span><span>Personal Finance</span></p><h3 class="timeline__title">Cash Control</h3></div></header>
-              <p class="timeline__desc">Built an offline-first Android budgeting app with secure local accounts, category budgets, detailed expense and receipt logging, date filters, spending graphs, streaks, achievements, and strict overspending controls.</p>
-              <div class="timeline__techs" aria-label="Key technologies"><span>Android</span><span>Room</span><span>SQLite</span><span>SharedPreferences</span></div>
-              <a class="timeline__repo-link" href="https://github.com/Azwidalimayaga1/Cash_Control" target="_blank" rel="noopener noreferrer" aria-label="View Cash Control on GitHub">View on GitHub <span aria-hidden="true">↗</span></a>
-            </article>
-          </li>
-
-          <li class="timeline__item reveal-up">
-            <div class="timeline__marker" aria-hidden="true"><span class="timeline__year">2026</span><span class="timeline__node"><svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 1 4 4v3h1a3 3 0 0 1 3 3v8H4v-8a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4Z"/><path d="M9 13h6M12 10v6"/></svg></span></div>
-            <article class="timeline__card">
-              <header class="timeline__card-header"><span class="timeline__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 12 3 3 7-7"/></svg></span><div><p class="timeline__meta"><span class="timeline__status">Web Application</span><span>Education Technology</span></p><h3 class="timeline__title">XISD Smart Reminder System</h3></div></header>
-              <p class="timeline__desc">Created a reminder platform for Intuthuko College with registration, login, subject selection, task and calendar management, reminders, and administration tools backed by a relational database.</p>
-              <div class="timeline__techs" aria-label="Key technologies"><span>PHP 8.2</span><span>MariaDB</span><span>MySQL</span><span>JavaScript</span></div>
-              <a class="timeline__repo-link" href="https://github.com/Azwidalimayaga1/Smart_Reminder_System-Intuthuko" target="_blank" rel="noopener noreferrer" aria-label="View XISD Smart Reminder System on GitHub">View on GitHub <span aria-hidden="true">↗</span></a>
-            </article>
-          </li>
-
-          <li class="timeline__item reveal-up">
-            <div class="timeline__marker" aria-hidden="true"><span class="timeline__year">2026</span><span class="timeline__node"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></div>
-            <article class="timeline__card">
-              <header class="timeline__card-header"><span class="timeline__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21V4a1 1 0 0 1 1-1h12v18"/><path d="M8 21v-7h4v7M8 7h1M8 10h1M13 7h1M13 10h1M17 21V9h3a1 1 0 0 1 1 1v11"/></svg></span><div><p class="timeline__meta"><span class="timeline__status">Academic Project</span><span>Enterprise Systems</span></p><h3 class="timeline__title">Contract Monthly Claim System</h3></div></header>
-              <p class="timeline__desc">Built an ASP.NET MVC application for lecturer claim management featuring authentication, SQL Server integration, Entity Framework, CRUD operations, and an administrative dashboard.</p>
-              <div class="timeline__techs" aria-label="Key technologies"><span>C#</span><span>ASP.NET MVC</span><span>SQL Server</span><span>Entity Framework</span></div>
-              <a class="timeline__repo-link" href="https://github.com/Azwidalimayaga1/ContractMonthlyClaimSystem" target="_blank" rel="noopener noreferrer" aria-label="View Contract Monthly Claim System on GitHub">View on GitHub <span aria-hidden="true">↗</span></a>
-            </article>
-          </li>
-
-          <li class="timeline__item reveal-up">
-            <div class="timeline__marker" aria-hidden="true"><span class="timeline__year">2026</span><span class="timeline__node"><svg viewBox="0 0 24 24"><path d="M3 3h18v14H3z"/><path d="M8 21h8M12 17v4M7 7h10M7 11h6"/></svg></span></div>
-            <article class="timeline__card">
-              <header class="timeline__card-header"><span class="timeline__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M6 3h12l2 4H4l2-4ZM5 7v13h14V7M9 11h6"/></svg></span><div><p class="timeline__meta"><span class="timeline__status">Web Application</span><span>E-Commerce</span></p><h3 class="timeline__title">Clothing Store</h3></div></header>
-              <p class="timeline__desc">Developed a dedicated clothing-store project focused on a structured product catalogue, responsive shopping experience, and practical e-commerce workflows.</p>
-              <div class="timeline__techs" aria-label="Key technologies"><span>Web Development</span><span>Responsive UI</span><span>E-Commerce</span></div>
-              <a class="timeline__repo-link" href="https://github.com/Azwidalimayaga1/ClothingStore" target="_blank" rel="noopener noreferrer" aria-label="View Clothing Store on GitHub">View on GitHub <span aria-hidden="true">↗</span></a>
-            </article>
-          </li>
-
-          <li class="timeline__item reveal-up">
-            <div class="timeline__marker" aria-hidden="true"><span class="timeline__year">2026</span><span class="timeline__node"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l4-4 4 4v12M13 21V5l3-2 3 2v16"/><path d="M7 13h2M15 9h2M15 13h2"/></svg></span></div>
-            <article class="timeline__card">
-              <header class="timeline__card-header"><span class="timeline__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 19 5-5 4 4 7-8"/><path d="M14 10h6v6"/></svg></span><div><p class="timeline__meta"><span class="timeline__status">Business Website</span><span>Software Services</span></p><h3 class="timeline__title">TDRDEVS Website</h3></div></header>
-              <p class="timeline__desc">Built and published the TDRDEVS web presence to present software-development services, brand information, and customer-facing content through a responsive website.</p>
-              <div class="timeline__techs" aria-label="Key technologies"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>GitHub Pages</span></div>
-              <a class="timeline__repo-link" href="https://github.com/Azwidalimayaga1/TDRDEVS-Website" target="_blank" rel="noopener noreferrer" aria-label="View TDRDEVS Website on GitHub">View on GitHub <span aria-hidden="true">↗</span></a>
-            </article>
-          </li>
-
-          <li class="timeline__item reveal-up">
-            <div class="timeline__marker" aria-hidden="true"><span class="timeline__year">2026</span><span class="timeline__node"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg></span></div>
-            <article class="timeline__card">
-              <header class="timeline__card-header"><span class="timeline__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 4h18l-2 12H5L3 4Z"/><path d="M8 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM17 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM3 4l-1-2"/></svg></span><div><p class="timeline__meta"><span class="timeline__status">Production Website</span><span>E-Commerce</span></p><h3 class="timeline__title">Wapanda Official</h3></div></header>
-              <p class="timeline__desc">Built the current Wapanda clothing storefront with product browsing, a shopping cart, PayFast integration, browser-based persistence, responsive layouts, and search-engine optimisation.</p>
-              <div class="timeline__techs" aria-label="Key technologies"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PayFast</span><span>Local Storage</span></div>
-              <a class="timeline__repo-link" href="https://github.com/Azwidalimayaga1/WapandaOffical" target="_blank" rel="noopener noreferrer" aria-label="View Wapanda Official on GitHub">View on GitHub <span aria-hidden="true">↗</span></a>
-            </article>
-          </li>
-
-          <li class="timeline__item reveal-up">
-            <div class="timeline__marker" aria-hidden="true"><span class="timeline__year">2026</span><span class="timeline__node"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H7l-3 3V4Z"/><path d="M8 9h.01M12 9h.01M16 9h.01"/></svg></span></div>
-            <article class="timeline__card">
-              <header class="timeline__card-header"><span class="timeline__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8v7a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-7a8 8 0 0 0-8-8Z"/><path d="M8 12h.01M16 12h.01M9 16h6"/></svg></span><div><p class="timeline__meta"><span class="timeline__status">Web Application</span><span>Education Technology</span></p><h3 class="timeline__title">PASH — Peer Academic Support Hub</h3></div></header>
-              <p class="timeline__desc">Designed a role-aware academic workspace for students, lecturers, managers, and administrators, bringing together tasks, study groups, calendars, focus sessions, progress tracking, and settings.</p>
-              <div class="timeline__techs" aria-label="Key technologies"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Encrypted Local Storage</span></div>
-              <a class="timeline__repo-link" href="https://github.com/Azwidalimayaga1/PASH" target="_blank" rel="noopener noreferrer" aria-label="View PASH on GitHub">View on GitHub <span aria-hidden="true">↗</span></a>
-            </article>
-          </li>
-
-          <li class="timeline__item reveal-up">
-            <div class="timeline__marker" aria-hidden="true"><span class="timeline__year">2025</span><span class="timeline__node"><svg viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v18H6a2 2 0 0 1 0-4h14"/><path d="M8 7h8M8 11h6"/></svg></span></div>
-            <article class="timeline__card">
-              <header class="timeline__card-header"><span class="timeline__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 10 9-5 9 5-9 5-9-5Z"/><path d="M7 12v5c0 1.7 2.2 3 5 3s5-1.3 5-3v-5"/></svg></span><div><p class="timeline__meta"><span class="timeline__status">Brand Website</span><span>Web Development</span></p><h3 class="timeline__title">Wapanda.co.za</h3></div></header>
-              <p class="timeline__desc">Created the original Wapanda web presence, establishing the clothing brand online through a focused, responsive customer experience.</p>
-              <div class="timeline__techs" aria-label="Key technologies"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Responsive Design</span></div>
-              <a class="timeline__repo-link" href="https://github.com/Azwidalimayaga1/wapanda.co.za" target="_blank" rel="noopener noreferrer" aria-label="View Wapanda.co.za on GitHub">View on GitHub <span aria-hidden="true">↗</span></a>
-            </article>
-          </li>
-        </ol>
-
-        <aside class="timeline-technologies reveal-up" aria-labelledby="timeline-technologies-heading">
-          <div><p class="timeline-technologies__eyebrow">Engineering toolkit</p><h3 id="timeline-technologies-heading">Key Technologies</h3></div>
-          <ul class="timeline-technologies__list" aria-label="Technologies used across projects"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>PHP</li><li>MariaDB / MySQL</li><li>C#</li><li>ASP.NET MVC</li><li>SQL Server</li><li>Entity Framework</li><li>Android</li><li>Room / SQLite</li><li>Git &amp; GitHub</li><li>PayFast</li></ul>
-        </aside>
-      </div>
-    </section>
+    <section id="experience" class="section section--alt" aria-labelledby="experience-heading"><div class="container"><p class="section__label">Development Portfolio</p><h2 id="experience-heading" class="section__title">More <span class="gradient-text">Projects</span></h2><ul class="project-archive"><li><div><h3>Contract Monthly Claim System</h3><p>C# · ASP.NET MVC · SQL Server · Entity Framework</p></div><a href="https://github.com/Azwidalimayaga1/ContractMonthlyClaimSystem" target="_blank" rel="noopener noreferrer" aria-label="View Contract Monthly Claim System on GitHub">GitHub</a></li>
+<li><div><h3>Clothing Store</h3><p>Web Development · Responsive UI · E-Commerce</p></div><a href="https://github.com/Azwidalimayaga1/ClothingStore" target="_blank" rel="noopener noreferrer" aria-label="View Clothing Store on GitHub">GitHub</a></li>
+<li><div><h3>TDRDEVS Website</h3><p>HTML5 · CSS3 · JavaScript · GitHub Pages</p></div><a href="https://github.com/Azwidalimayaga1/TDRDEVS-Website" target="_blank" rel="noopener noreferrer" aria-label="View TDRDEVS Website on GitHub">GitHub</a></li>
+<li><div><h3>PASH — Peer Academic Support Hub</h3><p>HTML5 · CSS3 · JavaScript · Encrypted Local Storage</p></div><a href="https://github.com/Azwidalimayaga1/PASH" target="_blank" rel="noopener noreferrer" aria-label="View PASH — Peer Academic Support Hub on GitHub">GitHub</a></li></ul></div></section>
 
     <!-- ==================== ACHIEVEMENTS ==================== -->
     <section id="achievements" class="section" aria-labelledby="achievements-heading" style="content-visibility:auto;contain-intrinsic-size:0 500px">
