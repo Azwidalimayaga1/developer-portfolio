@@ -122,6 +122,39 @@
 #experience .project-archive li { gap:.75rem; }
 }
 </style>
+<style id="device-responsive-layout">
+/* Two columns on phones; one five-card row on laptops and desktops. */
+#projects .container { max-width:1600px; }
+#projects .projects-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(.65rem,1.5vw,1.5rem); }
+#projects .project-card { min-width:0; }
+#projects .project-card .project-card__image { aspect-ratio:4/3; background:var(--bg-elevated); }
+#projects .project-card--portfolio .project-card__image { background:#fff; }
+#projects .project-card .project-card__asset { object-fit:contain; width:100%; height:100%; transform:none; }
+#projects .project-card__logo { padding:12%; }
+#projects .project-card--portfolio .project-card__asset { padding:6%; }
+#projects .project-card__body { padding:clamp(.75rem,1.3vw,1.25rem); }
+#projects .project-card__title { font-size:clamp(1rem,1.25vw,1.25rem); line-height:1.35; overflow-wrap:anywhere; }
+#projects .project-card__desc { font-size:.875rem; line-height:1.6; }
+#projects .project-card__badge { white-space:normal; font-size:.6875rem; }
+#projects .project-card__tags { gap:.3rem; }
+#projects .project-card__tags span { font-size:.6875rem; overflow-wrap:anywhere; }
+#projects .project-card__links { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:auto; padding-top:.75rem; }
+#projects .project-card__links .btn { min-height:44px; padding:.5rem .65rem; font-size:.8125rem; }
+#projects .project-card__source { min-height:44px; font-size:.875rem; overflow-wrap:anywhere; }
+@media(min-width:768px) and (max-width:1023px) { #projects .projects-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(min-width:1024px) { #projects .projects-grid { grid-template-columns:repeat(5,minmax(0,1fr)); } }
+@media(max-width:767px) {
+.container { padding-inline:clamp(1rem,4vw,1.5rem); }
+.section { padding-block:clamp(3rem,10vw,4.5rem); }
+.section__title { font-size:clamp(1.6rem,6vw,2.25rem); overflow-wrap:anywhere; }
+#about .about-editorial__grid { grid-template-columns:minmax(0,1fr); }
+.contact-grid,.form-row { grid-template-columns:minmax(0,1fr); }
+.contact-card__value { overflow-wrap:anywhere; }
+#experience .project-archive li > div { min-width:0; }
+#experience .project-archive h3 { overflow-wrap:anywhere; }
+}
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+</style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -558,27 +591,25 @@
 <article class="project-card glass reveal-up project-card--pos" aria-labelledby="proj-pos">
 <div class="project-card__image"><img src="assets/wapanda-pos-cover.png" alt="Wapanda POS desktop and mobile dashboard showing multi-store sales, inventory and operations" class="project-card__asset" width="1680" height="944" loading="lazy" decoding="async"></div>
 <div class="project-card__body"><span class="project-card__badge project-card__badge--complete">Multi-store platform</span>
-<h3 id="proj-pos" class="project-card__title">Wapanda POS System</h3><p class="project-card__desc">A configurable point-of-sale platform bringing sales, inventory, customers, reporting and role-based access together. Includes phone barcode scanning, store branding, and backup and recovery tools.</p>
+<h3 id="proj-pos" class="project-card__title">Wapanda POS System</h3><p class="project-card__desc">Multi-store sales, inventory, reporting and role-based access, with phone scanning and recovery tools.</p>
 <div class="project-card__tags"><span>PHP</span><span>MySQL</span><span>JSON API</span></div>
 <a class="project-card__source" href="#contact">Request a walkthrough <span>(private repository)</span></a></div></article>
 <article class="project-card glass reveal-up" aria-labelledby="proj-reminder">
-<div class="project-card__image"><div class="project-cover-type" aria-hidden="true"><span>Subjects / Tasks / Reminders</span><strong>Smart Reminder</strong><span>PHP / MariaDB / Kotlin</span></div></div>
+<div class="project-card__image"><img src="https://raw.githubusercontent.com/Azwidalimayaga1/Smart_Reminder_System-Intuthuko/main/images/logo.png" alt="Smart Reminder System logo" class="project-card__asset project-card__logo" loading="lazy" decoding="async"></div>
 <div class="project-card__body"><span class="project-card__badge project-card__badge--complete">Academic management</span>
-<h3 id="proj-reminder" class="project-card__title">Smart Reminder System</h3><p class="project-card__desc">An academic workspace for Intuthuko College with subjects, tasks, calendar events, reminders and administration tools, alongside a Kotlin Android application.</p>
+<h3 id="proj-reminder" class="project-card__title">Smart Reminder System</h3><p class="project-card__desc">Subjects, tasks, calendars and reminders for Intuthuko College, with web administration and an Android app.</p>
 <div class="project-card__tags"><span>PHP</span><span>MariaDB</span><span>Kotlin</span></div>
 <a class="project-card__source" href="https://github.com/Azwidalimayaga1/Smart_Reminder_System-Intuthuko" target="_blank" rel="noopener noreferrer">View source on GitHub</a></div></article>
 <article class="project-card glass reveal-up" aria-labelledby="proj-cash">
-<div class="project-card__image"><div class="project-cover-type" aria-hidden="true"><span>Budget / Track / Understand</span><strong>Cash Control</strong><span>Kotlin / Room / SQLite</span></div></div>
+<div class="project-card__image"><img src="https://raw.githubusercontent.com/Azwidalimayaga1/Cash_Control/main/app/src/main/res/drawable/piggybank_removebg_preview.png" alt="Cash Control piggy bank artwork" class="project-card__asset project-card__logo" loading="lazy" decoding="async"></div>
 <div class="project-card__body"><span class="project-card__badge project-card__badge--complete">Offline Android app</span>
-<h3 id="proj-cash" class="project-card__title">Cash Control</h3><p class="project-card__desc">Personal budgeting with category limits, expense history, receipt photos, spending graphs and savings streaks. Room keeps account and transaction data available offline.</p>
+<h3 id="proj-cash" class="project-card__title">Cash Control</h3><p class="project-card__desc">Offline budgeting, receipt photos, spending insights and savings streaks, powered by Room.</p>
 <div class="project-card__tags"><span>Kotlin</span><span>Room</span><span>SQLite</span></div>
 <a class="project-card__source" href="https://github.com/Azwidalimayaga1/Cash_Control" target="_blank" rel="noopener noreferrer">View source on GitHub</a></div></article>
 <article class="project-card project-card--portfolio glass reveal-up" aria-labelledby="proj-1">
             <div class="project-card__image">
               <img src="assets/Azwidali%20Geometric%20Identity%20Emblem.png" alt="Azwidali Geometric Identity Emblem for the Developer Portfolio project" class="project-card__asset" loading="lazy" decoding="async">
-              <div class="project-card__overlay">
-                <a href="https://github.com/Azwidalimayaga1/developer-portfolio" class="btn btn--sm btn--glass" target="_blank" rel="noopener noreferrer">GitHub</a>
-              </div>
+              
             </div>
             <div class="project-card__body">
               <span class="project-card__badge project-card__badge--live">Live</span>
@@ -587,15 +618,13 @@
               <div class="project-card__tags">
                 <span>HTML</span><span>CSS</span><span>JavaScript</span>
               </div>
-            </div>
-          </article>
+            <div class="project-card__links">
+                <a href="https://github.com/Azwidalimayaga1/developer-portfolio" class="btn btn--sm btn--glass" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div></div></article>
 <article class="project-card project-card--portfolio glass reveal-up" aria-labelledby="proj-5">
             <div class="project-card__image">
               <img src="assets/wapanda.png" alt="Original Wapanda clothing brand website" class="project-card__asset" loading="lazy" decoding="async">
-              <div class="project-card__overlay">
-                <a href="https://azwidalimayaga1.github.io/wapanda.co.za/" class="btn btn--sm btn--primary" target="_blank" rel="noopener noreferrer">Visit Website</a>
-                <a href="https://github.com/Azwidalimayaga1/wapanda.co.za" class="btn btn--sm btn--glass" target="_blank" rel="noopener noreferrer">GitHub</a>
-              </div>
+              
             </div>
             <div class="project-card__body">
               <span class="project-card__badge project-card__badge--live">Live</span>
@@ -604,8 +633,10 @@
               <div class="project-card__tags">
                 <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Responsive Design</span>
               </div>
-            </div>
-          </article>
+            <div class="project-card__links">
+                <a href="https://azwidalimayaga1.github.io/wapanda.co.za/" class="btn btn--sm btn--primary" target="_blank" rel="noopener noreferrer">Visit Website</a>
+                <a href="https://github.com/Azwidalimayaga1/wapanda.co.za" class="btn btn--sm btn--glass" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div></div></article>
 </div>
 </div>
 </section>
