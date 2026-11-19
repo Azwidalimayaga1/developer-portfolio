@@ -51,8 +51,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Azwidali Manyaga","jobTitle":"Software Developer","address":{"@type":"PostalAddress","addressCountry":"ZA"},"knowsAbout":["Web Development","Software Engineering","UI/UX Design","Information Security","System Design"]}</script>
 
   <style id="about-editorial-styles">
-    #about { --about-accent: #91a7ff; --about-panel: #202723; --about-rule: #343b38; }
-    [data-theme="light"] #about { --about-accent: #294dd8; --about-panel: #edf0e9; --about-rule: #dce1d9; }
+     #about { --about-accent: var(--accent); --about-panel: var(--bg-elevated); --about-rule: var(--bg-glass-border); }
     #about .about-editorial__grid { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); gap: clamp(2rem,5vw,4.5rem); align-items: center; }
     #about .about-editorial__eyebrow { color: var(--text-muted); font: 500 .75rem/1.6 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
     #about .about-editorial__heading { margin: 1rem 0 1.5rem; font-size: clamp(2rem,3.5vw,3.5rem); line-height: 1.12; letter-spacing: -.045em; font-weight: 650; color: var(--text); }
@@ -75,6 +74,22 @@
       #about .about-editorial__principles { gap: 1.5rem; margin-top: 2rem; }
     }
   </style>
+<style id="featured-project-refresh">
+#projects .projects-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+#projects .project-card--pos { grid-column: 1 / -1; }
+#projects .project-card--pos .project-card__image { aspect-ratio: 1680 / 944; }
+#projects .project-card--pos .project-card__asset { object-fit: contain; transform: none; }
+#projects .project-card--pos .project-card__body { max-width: 55rem; }
+#projects .project-card__source { display: inline-block; margin-top: 1.25rem; padding-block: .5rem; color: var(--accent); font-size: .9375rem; font-weight: 600; }
+#projects .project-card__source:hover { text-decoration: underline; }
+#projects .project-card__source span { color: var(--text-muted); font-size: .8125rem; font-weight: 400; }
+#projects .project-cover-type { height:100%; padding:clamp(1.25rem,3vw,2.5rem); display:flex; flex-direction:column; justify-content:space-between; background:var(--bg-elevated); color:var(--text); gap:1rem; }
+#projects .project-cover-type strong { font-size:clamp(1.75rem,4vw,3rem); line-height:1.1; letter-spacing:-.05em; color:var(--accent); }
+#projects .project-cover-type span { font: .75rem/1.7 var(--font-mono); color:var(--text-secondary); }
+#projects .project-card__overlay:focus-within { opacity:1; }
+@media(max-width:700px) { #projects .projects-grid { grid-template-columns:minmax(0,1fr); } }
+@media(hover:none) { #projects .project-card__overlay { opacity:1; background:var(--bg-glass); position:static; padding:.75rem; } #projects .project-card--portfolio .project-card__image { aspect-ratio:auto; } }
+</style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -508,9 +523,25 @@
         <h2 id="projects-heading" class="section__title reveal-up">My <span class="gradient-text">Projects</span></h2>
 
         <div class="projects-grid">
-
-          <!-- Project 1 -->
-          <article class="project-card project-card--portfolio glass reveal-up" aria-labelledby="proj-1">
+<article class="project-card glass reveal-up project-card--pos" aria-labelledby="proj-pos">
+<div class="project-card__image"><img src="assets/wapanda-pos-cover.png" alt="Wapanda POS desktop and mobile dashboard showing multi-store sales, inventory and operations" class="project-card__asset" width="1680" height="944" loading="lazy" decoding="async"></div>
+<div class="project-card__body"><span class="project-card__badge project-card__badge--complete">Multi-store platform</span>
+<h3 id="proj-pos" class="project-card__title">Wapanda POS System</h3><p class="project-card__desc">A configurable point-of-sale platform bringing sales, inventory, customers, reporting and role-based access together. Includes phone barcode scanning, store branding, and backup and recovery tools.</p>
+<div class="project-card__tags"><span>PHP</span><span>MySQL</span><span>JSON API</span></div>
+<a class="project-card__source" href="#contact">Request a walkthrough <span>(private repository)</span></a></div></article>
+<article class="project-card glass reveal-up" aria-labelledby="proj-daylight">
+<div class="project-card__image"><div class="project-cover-type" aria-hidden="true"><span>Habits / Accounts / Progress</span><strong>daylight.</strong><span>Kotlin / Android / SQLite / REST API</span></div></div>
+<div class="project-card__body"><span class="project-card__badge project-card__badge--complete">Android + API prototype</span>
+<h3 id="proj-daylight" class="project-card__title">Daylight Habit Tracker</h3><p class="project-card__desc">A Kotlin Android app and SQLite-backed REST API with account registration, persistent habits, editable settings, encrypted session storage, and backend and Android tests.</p>
+<div class="project-card__tags"><span>Kotlin</span><span>Android</span><span>SQLite</span><span>REST API</span></div>
+<a class="project-card__source" href="https://github.com/Azwidalimayaga1/daylight-kotlin-prototype" target="_blank" rel="noopener noreferrer">View source on GitHub</a></div></article>
+<article class="project-card glass reveal-up" aria-labelledby="proj-cash">
+<div class="project-card__image"><div class="project-cover-type" aria-hidden="true"><span>Budget / Track / Understand</span><strong>Cash Control</strong><span>Kotlin / Room / SQLite</span></div></div>
+<div class="project-card__body"><span class="project-card__badge project-card__badge--complete">Offline Android app</span>
+<h3 id="proj-cash" class="project-card__title">Cash Control</h3><p class="project-card__desc">Personal budgeting with category limits, expense history, receipt photos, spending graphs and savings streaks. Room keeps account and transaction data available offline.</p>
+<div class="project-card__tags"><span>Kotlin</span><span>Room</span><span>SQLite</span></div>
+<a class="project-card__source" href="https://github.com/Azwidalimayaga1/Cash_Control" target="_blank" rel="noopener noreferrer">View source on GitHub</a></div></article>
+<article class="project-card project-card--portfolio glass reveal-up" aria-labelledby="proj-1">
             <div class="project-card__image">
               <img src="assets/Azwidali%20Geometric%20Identity%20Emblem.png" alt="Azwidali Geometric Identity Emblem for the Developer Portfolio project" class="project-card__asset" loading="lazy" decoding="async">
               <div class="project-card__overlay">
@@ -526,62 +557,7 @@
               </div>
             </div>
           </article>
-
-          <!-- Project 2 -->
-          <article class="project-card project-card--portfolio glass reveal-up" aria-labelledby="proj-2">
-            <div class="project-card__image">
-              <img src="assets/wapanda.png" alt="Wapanda Clothing project" class="project-card__asset" loading="lazy" decoding="async">
-              <div class="project-card__overlay">
-                <a href="https://azwidalimayaga1.github.io/WapandaOffical/" class="btn btn--sm btn--primary" target="_blank" rel="noopener noreferrer">Live Demo</a>
-                <a href="https://github.com/Azwidalimayaga1/WapandaOffical" class="btn btn--sm btn--glass" target="_blank" rel="noopener noreferrer">GitHub</a>
-              </div>
-            </div>
-            <div class="project-card__body">
-              <span class="project-card__badge project-card__badge--complete">Complete</span>
-              <h3 id="proj-2" class="project-card__title">Wapanda Clothing</h3>
-              <p class="project-card__desc">Complete e-commerce clothing website for a streetwear brand with shopping cart, PayFast integration, and SEO optimization.</p>
-              <div class="project-card__tags">
-                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>PayFast</span><span>Local Storage</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Project 3 -->
-          <article class="project-card glass reveal-up" aria-labelledby="proj-3">
-            <div class="project-card__image">
-              <div class="project-card__placeholder">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".4"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-              </div>
-            </div>
-            <div class="project-card__body">
-              <span class="project-card__badge project-card__badge--progress">In Progress</span>
-              <h3 id="proj-3" class="project-card__title">Mining Management System</h3>
-              <p class="project-card__desc">Final year project — software solution for improving operations in South African mines. Full SDLC from requirements through deployment.</p>
-              <div class="project-card__tags">
-                <span>System Analysis</span><span>UML</span><span>ERD</span><span>SDLC</span><span>Figma</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Project 4 -->
-          <article class="project-card glass reveal-up" aria-labelledby="proj-4">
-            <div class="project-card__image">
-              <div class="project-card__placeholder">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".4"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><path d="M10 21v2a2 2 0 0 0 2 2v0a2 2 0 0 0 2-2v-2"/></svg>
-              </div>
-            </div>
-            <div class="project-card__body">
-              <span class="project-card__badge project-card__badge--complete">Complete</span>
-              <h3 id="proj-4" class="project-card__title">C# AI Chatbot</h3>
-              <p class="project-card__desc">Conversational chatbot with sentiment detection, keyword-based responses, and persistent conversation history using OOP principles.</p>
-              <div class="project-card__tags">
-                <span>C#</span><span>.NET</span><span>OOP</span><span>AI</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Project 5 -->
-          <article class="project-card project-card--portfolio glass reveal-up" aria-labelledby="proj-5">
+<article class="project-card project-card--portfolio glass reveal-up" aria-labelledby="proj-5">
             <div class="project-card__image">
               <img src="assets/wapanda.png" alt="Original Wapanda clothing brand website" class="project-card__asset" loading="lazy" decoding="async">
               <div class="project-card__overlay">
@@ -598,10 +574,9 @@
               </div>
             </div>
           </article>
-
-        </div>
-      </div>
-    </section>
+</div>
+</div>
+</section>
 
     <!-- ==================== EXPERIENCE TIMELINE ==================== -->
     <section id="experience" class="section section--alt" aria-labelledby="experience-heading" style="content-visibility:auto;contain-intrinsic-size:0 800px">
